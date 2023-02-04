@@ -1,3 +1,14 @@
+from sklearn.metrics import accuracy_score, precision_recall_fscore_support
+
+# Included functions:
+# plot_loss_curves
+# make_confusion_matrix
+# pred_and_plot
+# calculate_results
+
+
+
+
 def plot_loss_curves(history):
   """
   Plots the loss curve and accuracy for a given model
@@ -125,3 +136,22 @@ def pred_and_plot(model, filename, class_names):
   plt.imshow(img)
   plt.title(f"Prediction: {pred_class}")
   plt.axis(False);
+
+  
+
+def calculate_results(y_true, y_pred):
+  """
+  Calculates model accuracy, precision, recall and f1 score of a binary classification model
+  """
+  # clculate model accuracy
+  model_accuracy = accuracy_score(y_true, y_pred) * 100
+  # Calculate model precision, recall and f1-score using "weighted" average
+  model_precision, model_recall, model_f1, _ = precision_recall_fscore_support()
+  model_results = {"accuracy": model_accuracy,
+                   "precision": model_precision,
+                   "recall": model_recall,
+                   "f1": model_f1}
+  return model_results
+
+  
+  
